@@ -1,0 +1,20 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    topic: todoItemTopic
+    consumer:
+      group-id: todoItemGroup
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+      # 批量消费记录数
+      max-poll-records: 5
+      poll-max-wait: 5000
+
+    listener:
+      missing-topics-fatal: false
+
+    producer:
+      retries: 0
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer

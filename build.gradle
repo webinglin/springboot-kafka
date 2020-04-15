@@ -1,0 +1,48 @@
+buildscript {
+    repositories {
+        maven {
+            url "${repo}"
+        }
+    }
+
+    dependencies {
+        classpath("io.spring.gradle:dependency-management-plugin:1.0.6.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: "idea"
+
+group 'com.meiya.springboot'
+version '1.0'
+
+apply plugin: "java"
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+jar {
+	enabled = true
+}
+
+repositories {
+	maven {
+		url "${repo}"
+	}
+}
+
+dependencies {
+//    compile "org.springframework.boot:spring-boot-starter-kafka"
+    compile "org.springframework.kafka:spring-kafka:2.4.5.RELEASE"
+    // 明确kafka使用2.4.0的客户端，避免springboot自动依赖2.3.1的版本
+    compile "org.apache.kafka:kafka-clients:2.4.0"
+    compile 'springboot:boot-common:1.0.0.RELEASE'
+}
+
+configurations {
+	all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+[compileJava, javadoc, compileTestJava]*.options*.encoding = "UTF-8"
+
