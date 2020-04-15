@@ -31,11 +31,16 @@ repositories {
 }
 
 dependencies {
-//    compile "org.springframework.boot:spring-boot-starter-kafka"
+    
     compile "org.springframework.kafka:spring-kafka:2.4.5.RELEASE"
     // 明确kafka使用2.4.0的客户端，避免springboot自动依赖2.3.1的版本
     compile "org.apache.kafka:kafka-clients:2.4.0"
-    compile 'springboot:boot-common:1.0.0.RELEASE'
+    compile "springboot:boot-common:1.0.0.RELEASE"
+
+    // 二维码生成工具
+    compile "com.google.zxing:core:3.3.0"
+    compile "com.google.zxing:javase:3.3.0"
+    
 }
 
 configurations {
