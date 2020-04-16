@@ -1,6 +1,5 @@
 package com.meiya.mq.util;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
