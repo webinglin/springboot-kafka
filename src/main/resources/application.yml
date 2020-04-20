@@ -1,6 +1,7 @@
 spring:
   kafka:
     bootstrap-servers: localhost:9092
+    # kafka的主题配置
     topic: todoItemTopic
     consumer:
       group-id: todoItemGroup
@@ -18,6 +19,9 @@ spring:
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
 
+  # 二维码图片定时任务扫描目录/kafka消费消息之后，生成的二维码图片存放路径
   qrCodeDir: /u01/qrCode/consumer/
+  # 二维码图片备份目录
   qrCodeBackupDir: /u01/qrCode/backup/
+  # 打印机名称
   printerName: Microsoft Print to PDF
