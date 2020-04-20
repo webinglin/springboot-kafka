@@ -20,3 +20,4 @@ spring:
 
   qrCodeDir: /u01/qrCode/consumer/
   qrCodeBackupDir: /u01/qrCode/backup/
+  printerName: Microsoft Print to PDF

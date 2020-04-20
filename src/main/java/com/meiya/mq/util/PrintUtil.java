@@ -25,7 +25,7 @@ public class PrintUtil {
      * @param printerName  打印机名称
      * @param printFile     打印的文件
      */
-    public static void print(String printerName, File printFile){
+    public static boolean print(String printerName, File printFile){
         PrintService[] printServices = PrinterJob.lookupPrintServices();
         PrintService printService = null;
         for (PrintService _printService : printServices) {
@@ -37,7 +37,7 @@ public class PrintUtil {
             LOG.error("- - - - - - - - - - - - - - - - ");
             LOG.error("找不到可用的打印机");
             LOG.error("- - - - - - - - - - - - - - - - ");
-            return ;
+            return false;
         }
 
 
@@ -70,8 +70,9 @@ public class PrintUtil {
             LOG.error("- - - - - - - - - - - - - - - - ");
             LOG.error("打印出错", e);
             LOG.error("- - - - - - - - - - - - - - - - ");
+            return false;
         }
-
+        return true;
     }
 
     public static void main(String[] args) {

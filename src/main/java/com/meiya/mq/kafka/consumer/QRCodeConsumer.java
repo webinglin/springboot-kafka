@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -26,7 +27,7 @@ public class QRCodeConsumer {
     private static final Logger LOG = LoggerFactory.getLogger(QRCodeConsumer.class);
 
     /* 二维码消费目录 */
-    @Value("${qrCodeDir:/u01/qrCode/consumer/}")
+    @Value("${spring.qrCodeDir:/u01/qrCode/consumer/}")
     private String qrCodeDir;
 
     /**
@@ -34,7 +35,7 @@ public class QRCodeConsumer {
      * @param message  接收到的消息
      */
     @KafkaListener(id = "consumer-01", topics = "${spring.kafka.topic}")
-    public void receive(/*@Payload */String message,
+    public void receive(@Payload String message,
                         @Header(KafkaHeaders.RECEIVED_PARTITION_ID) Integer partition,
                         @Header(KafkaHeaders.OFFSET) Long offset){
         /*
@@ -55,7 +56,7 @@ public class QRCodeConsumer {
         if(!qrCodeParentDir.exists()){
             qrCodeParentDir.mkdirs();
         }
-        String qrCodeImg = qrCodeParentDir + "/" + StringUtil.getBase64Guid() + "_" + dateStr + ".jpg";
+        String qrCodeImg = qrCodeParentDir + "/" + dateStr + "_" + StringUtil.getBase64Guid() + ".jpg";
 
         QRCodeZxingUtil.generateQRcodePic(message,100,100,qrCodeImg);
 
