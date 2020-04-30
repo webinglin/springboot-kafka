@@ -1,6 +1,6 @@
 package com.meiya;
 
-import com.meiya.mq.kafka.producer.Producer;
+import com.meiya.mq.kafka.producer.KafkaProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,12 +19,12 @@ public class SpringKafkaApplication implements CommandLineRunner {
     }
 
     @Autowired
-    private Producer sender;
+    private KafkaProducer sender;
 
     @Override
     public void run(String... strings) throws Exception {
-//        for (int i = 1; i < 13; i++){
-//            sender.send("message-" + i);
-//        }
+        for (int i = 1; i < 13; i++){
+            sender.send("message-" + i);
+        }
     }
 }

@@ -14,14 +14,14 @@ import javax.annotation.Resource;
  * @since 20200415
  */
 @Service
-public class Producer {
+public class KafkaProducer {
 
-    private static final Logger LOG = LoggerFactory.getLogger(Producer.class);
+    private static final Logger LOG = LoggerFactory.getLogger(KafkaProducer.class);
 
     @Resource
     private KafkaTemplate<String, String> kafkaTemplate;
 
-    @Value("${spring.kafka.topic}")
+    @Value("${spring.kafka.topic:todoItemTopic}")
     private String topic;
 
     public void send(String data){
